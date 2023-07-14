@@ -1,6 +1,9 @@
 {
   "scripts": {
+    "build": "",
     "dev": "node rundev.js"
+  },
+  "dependencies": {
+    "prettier": "^3.0.0"
   }
 }
-

@@ -16,7 +16,6 @@ process.on("exit", () => {
   if (app && !app.killed) app.kill();
 });
 
-
 // Start emulators
 emulators = spawn(
   "firebase",
@@ -30,7 +29,7 @@ emulators = spawn(
   {
     cwd: __dirname,
     stdio: ["ignore", "inherit", "inherit"],
-  }
+  },
 );
 
 // Frontend application
