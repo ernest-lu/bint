@@ -1,5 +1,6 @@
 <script>
     import { paste_document } from "../firebase";
+    import { Heading, Button, Textarea } from "flowbite-svelte";
     let text_data = "";
     let id_of_paste = "";
     let post_message = "";
@@ -19,11 +20,11 @@
 </script>
 
 <main>
-    <h1>Bint</h1>
+    <Heading>Bint</Heading>
 
-    <input bind:value={text_data} />
+    <Textarea bind:value={text_data} rows="35" font-family="monospace" />
 
     <p>text preview: {text_data}</p>
-    <button on:click={paste_and_process}>Submit Paste</button>
+    <Button on:click={paste_and_process}>Submit Paste</Button>
     <p>{post_message}</p>
 </main>
