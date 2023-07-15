@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm ci
-      - run: npm run build
+      - run: npm ci && npm run build
         working-directory: bint-frontend
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
