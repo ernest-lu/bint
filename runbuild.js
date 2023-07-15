@@ -9,7 +9,7 @@
 const path = require("path");
 const { spawn, spawnSync } = require("child_process");
 
-let emulators, app;
+let emulators, app, firebase;
 
 process.on("exit", () => {
   if (emulators && !emulators.killed) emulators.kill();
@@ -21,6 +21,10 @@ app = spawn("npm", ["ci"],  {
   stdio: ["ignore", "pipe", "inherit"],
 });
 app.stdout.pipe(process.stdout);
+
+firebase = spawn("firebase", ["experiments:enable", "webframeworks"], {
+  stdio: ["ignore", "ignore", "ignore"],
+});
 // Frontend application
 // why vite dev no work
 app = spawn("npm", ["run", "build"], {
