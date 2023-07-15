@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "vite build && hugo",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -22,9 +22,15 @@
   "type": "module",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "firebase": "^10.0.0",
+    "@sveltejs/adapter-static": "^2.0.2",
+    "crypto-js": "^4.1.1",
+    "firebase": "^9.4.0",
     "flowbite": "^1.7.0",
     "flowbite-svelte": "^0.39.3",
+    "hash.js": "^1.1.7",
+    "hugo": "^0.0.3",
+    "jshashes": "^1.0.8",
+    "svelte-preprocess": "^5.0.4",
     "tailwind-merge": "^1.13.2"
   }
 }

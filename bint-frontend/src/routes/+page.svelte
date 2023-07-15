@@ -6,8 +6,7 @@
     let post_message = "";
 
     async function paste_and_process() {
-        let resp = await paste_document(text_data);
-        let data = resp.data;
+        let data = await paste_document(text_data);
 
         id_of_paste = data.content;
         if (data.message === "success") {
@@ -22,7 +21,7 @@
 <main>
     <Heading>Bint</Heading>
 
-    <Textarea bind:value={text_data} rows="35" font-family="monospace" />
+    <Textarea bind:value={text_data} rows="35" style="font-family:monospace;" />
 
     <p>text preview: {text_data}</p>
     <Button on:click={paste_and_process}>Submit Paste</Button>

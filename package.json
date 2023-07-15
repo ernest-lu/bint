@@ -3,6 +3,9 @@
     "dev": "node rundev.js"
   },
   "dependencies": {
+    "firebase": "^9.23.0",
+    "firebase-frameworks": "^0.10.5",
+    "firebase-tools": "^11.30.0",
     "prettier": "^3.0.0"
   }
 }

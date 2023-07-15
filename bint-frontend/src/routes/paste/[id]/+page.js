@@ -2,14 +2,13 @@ import { get_document } from "../../../firebase.js";
 import { error } from "@sveltejs/kit";
 
 export async function load({ params }) {
-  const resp = await get_document({ id: params.id });
-  const data = resp.data;
+  const resp = await get_document(params.id);
 
-  if (data.message !== "success") {
+  if (resp.message !== "success") {
     throw error(404);
   }
 
-  const content = data.content;
+  const content = resp.content;
 
   return {
     content,
