@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "node rundev.js"
+    "dev": "node rundev.js",
+    "build": "node runbuild.js"
   },
   "dependencies": {
     "firebase": "^9.23.0",
