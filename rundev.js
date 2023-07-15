@@ -16,6 +16,11 @@ process.on("exit", () => {
   if (app && !app.killed) app.kill();
 });
 
+spawnSync("npm", ["run", "build"], {
+  cwd: path.join(__dirname, "functions"),
+  stdio: ["ignore", "inherit", "inherit"],
+});
+
 // Start emulators
 emulators = spawn(
   "firebase",

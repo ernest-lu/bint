@@ -4,10 +4,14 @@
       "source": "functions",
       "codebase": "default",
       "ignore": [
-        "venv",
+        "node_modules",
         ".git",
         "firebase-debug.log",
         "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
       ]
     }
   ],
@@ -16,7 +20,13 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "bint-frontend",
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "**",
+        "function": "on_request_example"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
