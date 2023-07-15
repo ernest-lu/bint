@@ -1,6 +1,5 @@
 {
   "scripts": {
-    "build": "",
     "dev": "node rundev.js"
   },
   "dependencies": {
