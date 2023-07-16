@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "bintbadint",
+    "staging": "bintbadint"
+  },
+  "targets": {},
+  "etags": {}
+}
