@@ -22,14 +22,17 @@
   "type": "module",
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@skeletonlabs/skeleton": "^1.9.0",
     "@sveltejs/adapter-static": "^2.0.2",
     "crypto-js": "^4.1.1",
     "firebase": "^9.4.0",
     "flowbite": "^1.7.0",
     "flowbite-svelte": "^0.39.3",
     "hash.js": "^1.1.7",
+    "highlight.js": "^11.8.0",
     "hugo": "^0.0.3",
     "jshashes": "^1.0.8",
+    "skeleton": "^0.1.2",
     "svelte-preprocess": "^5.0.4",
     "tailwind-merge": "^1.13.2"
   }

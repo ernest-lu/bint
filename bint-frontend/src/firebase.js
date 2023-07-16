@@ -10,7 +10,6 @@ import { error } from '@sveltejs/kit';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Initialize Firebase
-console.log(config);
 export const app = initializeApp(config.firebase);
 const db = getFirestore(app);
 if (isDev) {
@@ -20,6 +19,14 @@ const pastes = collection(db, "pastes");
 
 export async function paste_document(content) {
   const id = sha256(content).toString();
+
+  if ((await getDoc(doc(pastes, id))).exists()) {
+    return {
+      message: "already exists",
+      content: id
+    };
+  }
+
   await setDoc(doc(pastes, id), {
     content: content
   });

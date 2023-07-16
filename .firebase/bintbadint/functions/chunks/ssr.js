@@ -27,6 +27,11 @@ function subscribe(store, ...callbacks) {
   const unsub = store.subscribe(...callbacks);
   return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
 }
+function get_store_value(store) {
+  let value;
+  subscribe(store, (_) => value = _)();
+  return value;
+}
 function compute_rest_props(props, keys) {
   const rest = {};
   keys = new Set(keys);
@@ -42,6 +47,9 @@ function compute_slots(slots) {
   }
   return result;
 }
+function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
+  return new CustomEvent(type, { detail, bubbles, cancelable });
+}
 let current_component;
 function set_current_component(component) {
   current_component = component;
@@ -50,6 +58,25 @@ function get_current_component() {
   if (!current_component)
     throw new Error("Function called outside component initialization");
   return current_component;
+}
+function createEventDispatcher() {
+  const component = get_current_component();
+  return (type, detail, { cancelable = false } = {}) => {
+    const callbacks = component.$$.callbacks[type];
+    if (callbacks) {
+      const event = custom_event(
+        /** @type {string} */
+        type,
+        detail,
+        { cancelable }
+      );
+      callbacks.slice().forEach((fn) => {
+        fn.call(component, event);
+      });
+      return !event.defaultPrevented;
+    }
+    return true;
+  };
 }
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
@@ -235,20 +262,22 @@ function style_object_to_string(style_object) {
   return Object.keys(style_object).filter((key) => style_object[key]).map((key) => `${key}: ${escape_attribute_value(style_object[key])};`).join(" ");
 }
 export {
-  setContext as a,
-  validate_store as b,
+  validate_store as a,
+  subscribe as b,
   create_ssr_component as c,
-  subscribe as d,
+  compute_rest_props as d,
   escape as e,
-  compute_rest_props as f,
+  spread as f,
   getContext as g,
-  spread as h,
-  escape_attribute_value as i,
-  escape_object as j,
-  add_attribute as k,
-  compute_slots as l,
+  escape_object as h,
+  add_attribute as i,
+  escape_attribute_value as j,
+  compute_slots as k,
+  get_store_value as l,
   missing_component as m,
-  noop as n,
-  safe_not_equal as s,
+  createEventDispatcher as n,
+  noop as o,
+  safe_not_equal as p,
+  setContext as s,
   validate_component as v
 };

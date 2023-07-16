@@ -10,9 +10,9 @@
 
         id_of_paste = data.content;
         if (data.message === "success") {
-            post_message = "success, posted to: " + id_of_paste;
+            post_message = "success, posted to: ";
         } else {
-            post_message = "post already exists at id: " + id_of_paste;
+            post_message = "post already exists at id: ";
         }
         return;
     }
@@ -25,5 +25,9 @@
 
     <p>text preview: {text_data}</p>
     <Button on:click={paste_and_process}>Submit Paste</Button>
-    <p>{post_message}</p>
+    <p>{post_message}
+        {#if post_message != ''}
+            <a href={"/paste/" + id_of_paste} style="color:blue;">{id_of_paste}</a>
+        {/if}
+    </p>
 </main>

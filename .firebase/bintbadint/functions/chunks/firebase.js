@@ -27,7 +27,6 @@ const config = {
 };
 const env = "development";
 const config$1 = config[env];
-console.log(config$1);
 const app = initializeApp(config$1.firebase);
 const db = getFirestore(app);
 const pastes = collection(db, "pastes");
